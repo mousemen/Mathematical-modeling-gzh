@@ -21,7 +21,7 @@ y = (None,None) #未知数取值范围
 #以上参数的值可改
 
 #求解
-res = optimize.linprog(-c,A,b,Aeq,beq)
+res = optimize.linprog(-c,A,b,Aeq,beq,bounds = (x,y))
 print(res)
 
 —————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -128,13 +128,14 @@ def test():
     b = np.array([56, 70])
     Aeq = None
     beq = None
-    bounds = [(0, None), (0, None)]
- 
-    solver = ILP(c, A, b, Aeq, beq, bounds)
+    x=(0,None)
+    y=(0,None)
+
+    solver = ILP(c, A, b, Aeq, beq, bounds = (x,y))
     solver.solve()
  
     print("Test 's result:", solver.opt_val, solver.opt_x)
-    print("Test 's true optimal x: [4, 2]\n")
+    
  
  
  
